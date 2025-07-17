@@ -103,7 +103,9 @@ For quick testing, use the 0.5 mm phantom and simulate TSE or VAT for only a few
 ## Outputs
 
 ### Simulation Results
-Each simulation generates various outputs saved inside a `.mat` file:
+Each simulation produces sample images visualized via the `visualizeSimulationResults` function called inside the main scripts.
+
+Each simulation also generates various outputs saved inside a `.mat` file:
 
 **Filename Format**: `{sequence}_{materials}_{B0}T_Nbins{#bins}_readBW{readout_bw}_rfBW{rf_bw}_res{phantom_resolution}_{timestamp}.mat`
 
@@ -122,7 +124,6 @@ Each simulation generates various outputs saved inside a `.mat` file:
 Results are organized as follows:
 - `./results/`: Single simulation results
 - `./results/parameter_sweep/`: Parameter sweep results
-
 
 ## Directory Structure
 
