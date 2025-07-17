@@ -132,10 +132,10 @@ mri_metal_simulation/
 ├── simulation/
 │   ├── sequences/               	# MRI sequence simulation functions
 │   ├── reconstruction/          	# Image reconstruction functions
-│   ├── helpers/          			# Helper functions for simulation
-│   └── utils/          		 	# General utility functions
-├── data/              				# Implant phantom data
-├── results/              			# Simulation results save folder
+│   ├── helpers/          		# Helper functions for simulation
+│   └── utils/          		# General utility functions
+├── data/              			# Implant phantom data
+├── results/              		# Simulation results save folder
 │   └── parameter_sweep/          	# Parameter sweep simulation results save folder
 ├── main_simulation.m            	# Main simulation script
 ├── main_parameter_sweep.m       	# Main parameter sweep script
@@ -152,7 +152,7 @@ mri_metal_simulation/
 
 4. Koch KM, Hargreaves BA, Pauly KB, Chen W, Gold GE, King KF. Magnetic resonance imaging near metal implants. *J Magn Reson Imaging.* 2010;32(4):773-787. doi:10.1002/jmri.22313
 
-5. 	Hargreaves BA, Worters PW, Pauly KB, Pauly JM, Koch KM, Gold GE. Metal-induced artifacts in MRI. *AJR Am J Roentgenol.* 2011;197(3):547-555. doi:10.2214/AJR.11.7364
+5. Hargreaves BA, Worters PW, Pauly KB, Pauly JM, Koch KM, Gold GE. Metal-induced artifacts in MRI. *AJR Am J Roentgenol.* 2011;197(3):547-555. doi:10.2214/AJR.11.7364
 
 6. Shi X, Yoon D, Koch KM, Hargreaves BA. Metallic implant geometry and susceptibility estimation using multispectral B0 field maps. *Magn Reson Med.* 2017;77(6):2402-2413. doi:10.1002/mrm.26313
 
