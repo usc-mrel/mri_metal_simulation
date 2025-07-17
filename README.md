@@ -7,7 +7,7 @@ A MATLAB framework for simulating MRI sequences in the presence of metal implant
 
 1. Clone or download this repository
 2. Download data from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16003439.svg)](https://doi.org/10.5281/zenodo.16003439)
-3. Place the data inside `./data`
+3. Create a folder `./data` and place the data inside
 4. Install required MATLAB toolboxes:
 	- Statistics and Machine Learning Toolbox
 	- Signal Processing Toolbox
@@ -28,6 +28,53 @@ The simulator allows configuration of key MRI parameters including:
 - Number of spectral encodings
 - Noise parameters
 
+## Phantom Data
+
+The simulator uses realistic phantom data that includes tissue property maps (T1, T2, proton density) and B0 field maps. The phantom data is available in different configurations:
+
+### Available Phantom Types
+- **Implant Materials**: 
+  - `CoCr`: THA with CoCr cup, Polyethylene liner, CoCr head, Titanium stem
+  - `TiCer`: THA with Titanium cup, Polyethylene liner, Ceramic head, Titanium stem
+  - `Plastic`: THA with plastic materials (control case)
+
+- **Phantom Resolutions**:
+  - `02mm`: High resolution (0.2 mm isotropic)
+  - `05mm`: Standard resolution (0.5 mm isotropic)
+
+### Phantom File Naming Convention
+Phantom files follow the naming pattern: `hip_combined_phantom_{material}_{resolution}.mat`
+
+### Phantom Data Contents
+Each phantom file contains:
+- `phantom.t1map`: T1 relaxation time map (ms)
+- `phantom.t2map`: T2 relaxation time map (ms) 
+- `phantom.pdmap`: Proton density map
+- `phantom.dfmap`: B0 field offset map (Hz)
+- `phantom.susmap`: Susceptibility map (ppm)
+- `phantom.mask`: Tissue segmentation mask with tissue IDs
+- `phantom.resolution`: Phantom resolution [x, y, z] (mm)
+- `phantom_config.materials`: Material specifications
+
+### Tissue Segmentation
+The phantom mask includes the following tissue types:
+- **0**: Implant
+- **1**: Air  
+- **2**: Muscle
+- **3**: Fat
+- **4**: Bone
+- **5**: Bone Marrow
+- **6**: Blood
+- **7**: Cartilage
+- **8**: Bladder
+- **9**: Rectum
+- **10**: Other tissues
+
+### Tissue Parameter Customization
+Tissue parameters (T1, T2, PD) can be customized from `simulation/helpers/prepareParameterMaps.m`. The function supports:
+- **B0-dependent T1 modeling**: T1 exponential model based on field strength
+- **Custom tissue values**: Override default parameters for specific tissues by editing the customization section
+
 ## Usage
 
 ### Single Simulation
@@ -40,7 +87,7 @@ The simulator allows configuration of key MRI parameters including:
 
 2. Customize simulation parameters by editing the default config values or editing overrides in `main_simulation.m`:
    ```matlab
-   sim_config.system.B0 = 3.0;             	% Field strength (T)
+   sim_config.system.B0 = 3.0;             % Field strength (T)
    sim_config.imaging.readBWpix = 600;		% Readout bandwidth (Hz/px)
    sim_config.imaging.rfBW = 1.5;			% RF bandwidth (kHz)
    ```
@@ -60,7 +107,7 @@ The simulator allows configuration of key MRI parameters including:
 	
 2. Customize simulation parameters by editing the default config values or editing overrides in `run_parameter_sweep.m`:
    ```matlab
-   sim_config.system.B0 = 3.0;             	% Field strength (T)
+   sim_config.system.B0 = 3.0;             % Field strength (T)
    sim_config.imaging.readBWpix = 600;		% Readout bandwidth (Hz/px)
    sim_config.imaging.rfBW = 1.5;			% RF bandwidth (kHz)
    ```

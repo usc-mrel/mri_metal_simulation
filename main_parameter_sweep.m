@@ -18,24 +18,13 @@
 % sweep_parameter = 'TR';           sweep_values = [1500, 2100, 3000];
 % sweep_parameter = 'TE';           sweep_values = [20, 30, 40];
 
-%% Example Usage 1
-clear;
-clc;
-
-% Sweep parameter
-sweep_parameter = 'B0';
-sweep_values = [0.55, 1.5, 3.0];
-
-phantom_file = dir('./data/hip_combined_phantom*TiCer*05mm*.mat');
-run run_parameter_sweep.m
-
-%% Example Usage 2
+%% Example Usage
 clear;
 clc;
 
 % Sweep parameter
 sweep_parameter = 'readBWpix';
-sweep_values = [100, 200, 400];
+sweep_values = [100, 200, 400, 600];
 
 phantom_file = dir('./data/hip_combined_phantom*CoCr*05mm*.mat');
 run run_parameter_sweep.m
