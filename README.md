@@ -32,7 +32,6 @@ The simulator allows configuration of key MRI parameters including:
 
 The simulator uses realistic phantom data that includes tissue property maps (T1, T2, proton density) and B0 field maps. The phantom data is available in different configurations:
 
-### Available Phantom Types
 - **Implant Materials**: 
   - `CoCr`: THA with CoCr cup, Polyethylene liner, CoCr head, Titanium stem
   - `TiCer`: THA with Titanium cup, Polyethylene liner, Ceramic head, Titanium stem
@@ -55,20 +54,6 @@ Each phantom file contains:
 - `phantom.mask`: Tissue segmentation mask with tissue IDs
 - `phantom.resolution`: Phantom resolution [x, y, z] (mm)
 - `phantom_config.materials`: Material specifications
-
-### Tissue Segmentation
-The phantom mask includes the following tissue types:
-- **0**: Implant
-- **1**: Air  
-- **2**: Muscle
-- **3**: Fat
-- **4**: Bone
-- **5**: Bone Marrow
-- **6**: Blood
-- **7**: Cartilage
-- **8**: Bladder
-- **9**: Rectum
-- **10**: Other tissues
 
 ### Tissue Parameter Customization
 Tissue parameters (T1, T2, PD) can be customized from `simulation/helpers/prepareParameterMaps.m`. The function supports:
