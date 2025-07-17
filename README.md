@@ -40,7 +40,7 @@ The simulator allows configuration of key MRI parameters including:
 
 2. Customize simulation parameters by editing the default config values or editing overrides in `main_simulation.m`:
    ```matlab
-   sim_config.system.B0 = 3.0;             % Field strength (T)
+   sim_config.system.B0 = 3.0;             	% Field strength (T)
    sim_config.imaging.readBWpix = 600;		% Readout bandwidth (Hz/px)
    sim_config.imaging.rfBW = 1.5;			% RF bandwidth (kHz)
    ```
@@ -60,7 +60,7 @@ The simulator allows configuration of key MRI parameters including:
 	
 2. Customize simulation parameters by editing the default config values or editing overrides in `run_parameter_sweep.m`:
    ```matlab
-   sim_config.system.B0 = 3.0;             % Field strength (T)
+   sim_config.system.B0 = 3.0;             	% Field strength (T)
    sim_config.imaging.readBWpix = 600;		% Readout bandwidth (Hz/px)
    sim_config.imaging.rfBW = 1.5;			% RF bandwidth (kHz)
    ```
