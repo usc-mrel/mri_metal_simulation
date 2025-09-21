@@ -56,7 +56,7 @@ Each phantom file contains:
 - `phantom.t1map`: T1 relaxation time map (ms)
 - `phantom.t2map`: T2 relaxation time map (ms) 
 - `phantom.pdmap`: Proton density map
-- `phantom.dfmap`: B0 field offset map (Hz)
+- `phantom.dfmap`: B0 field offset map (Hz/T)
 - `phantom.susmap`: Susceptibility map (ppm)
 - `phantom.mask`: Tissue segmentation mask with tissue IDs
 - `phantom.resolution`: Phantom resolution [x, y, z] (mm)
@@ -153,14 +153,14 @@ Each simulation also generates various outputs saved inside a `.mat` file:
 **Example**: `SEMAC_CoCr_0.55T_Nbins6_readBW400_rfBW1.0_res0.5_20250716_104931.mat`
 
 ### Saved Variables
-- `final_im`: Final reconstructed images
-- `im`: Raw simulated images (before final reconstruction)
-- `params`: Complete simulation parameters used
-- `kspace`: K-space data without noise
-- `noise_params`: Noise characteristics
-- `phantom_config`: Phantom configuration details
-- `sim_config`: Original simulation configuration
-- `phantom_file`: Source phantom file information
+- `final_im`: Final reconstructed images (struct)
+- `im`: Raw simulated images (before final reconstruction) (matrix)
+- `params`: Complete simulation parameters used (struct)
+- `kspace`: K-space data without noise (matrix)
+- `noise_params`: Noise characteristics (struct)
+- `phantom_config`: Phantom configuration details (struct)
+- `sim_config`: Original simulation configuration (struct)
+- `phantom_file`: Source phantom file information (struct)
 
 Results are organized as follows:
 - `./results/`: Single simulation results
@@ -215,6 +215,7 @@ mri_metal_simulation/
 6. Shi X, Yoon D, Koch KM, Hargreaves BA. Metallic implant geometry and susceptibility estimation using multispectral B0 field maps. *Magn Reson Med.* 2017;77(6):2402-2413. doi:10.1002/mrm.26313
 
 ---
+This code is tested in MATLAB 2021a and 2025a.
 
 For questions or issues please contact (keskin AT usc DOT edu).
 
