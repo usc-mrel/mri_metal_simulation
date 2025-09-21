@@ -6,11 +6,12 @@ A MATLAB framework for simulating MRI sequences in the presence of metal implant
 ## Setup
 
 1. Clone or download this repository
-2. Download data from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16003439.svg)](https://doi.org/10.5281/zenodo.16003439)
+2. Download `data.zip` from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16003438.svg)](https://doi.org/10.5281/zenodo.16003438)
 3. Create a folder `./data` and place the data inside
 4. Install required MATLAB toolboxes:
 	- Statistics and Machine Learning Toolbox
 	- Signal Processing Toolbox
+   - Image Processing Toolbox
 
 ## Configuration
 
@@ -30,19 +31,25 @@ The simulator allows configuration of key MRI parameters including:
 
 ## Phantom Data
 
-The simulator uses realistic phantom data that includes tissue property maps (T1, T2, proton density) and B0 field maps. The phantom data is available in different configurations:
+The simulator uses phantom data that includes tissue property maps (T1, T2, proton density) and B0 field maps. The shared phantom data is available in different configurations:
 
 - **Implant Materials**: 
   - `CoCr`: THA with CoCr cup, Polyethylene liner, CoCr head, Titanium stem
   - `TiCer`: THA with Titanium cup, Polyethylene liner, Ceramic head, Titanium stem
-  - `Plastic`: THA with plastic materials (control case)
+  - `Plastic`: THA with plastic materials (control case, only 0.5 mm version available)
 
 - **Phantom Resolutions**:
   - `02mm`: High resolution (0.2 mm isotropic)
   - `05mm`: Standard resolution (0.5 mm isotropic)
 
+- **Phantom Type**:
+  - `combined`: phantom with realistic human model combined with implant
+  - `implant`: phantom with only implant model (only 0.5 mm version available)
+
 ### Phantom File Naming Convention
-Phantom files follow the naming pattern: `hip_combined_phantom_{material}_{resolution}.mat`
+Phantom files follow the naming pattern: `hip_{type}_phantom_{material}_{resolution}.mat`
+
+- Examples: `hip_combined_phantom_CoCr_05mm.mat`, `hip_implant_phantom_TiCer_05mm.mat`
 
 ### Phantom Data Contents
 Each phantom file contains:
@@ -54,6 +61,8 @@ Each phantom file contains:
 - `phantom.mask`: Tissue segmentation mask with tissue IDs
 - `phantom.resolution`: Phantom resolution [x, y, z] (mm)
 - `phantom_config.materials`: Material specifications
+
+**Note**: If users want to use their own data, phantom data should follow the above file structure to run the simulation without any error.
 
 ### Tissue Parameter Customization
 Tissue parameters (T1, T2, PD) can be customized from `simulation/helpers/prepareParameterMaps.m`. The function supports:
@@ -157,6 +166,20 @@ Results are organized as follows:
 - `./results/`: Single simulation results
 - `./results/parameter_sweep/`: Parameter sweep results
 
+## Analysis Scripts
+
+### Spectral Bins Analysis
+The script to analyze signal percentages inside all spectral bins for a specific slice is available in `analysis/main_spectral_bins_analysis.m`. This analysis is recommended to be used with only implant data (without digital human model) and for simulations performed with high number of spectral bins.
+To run with already available simulated results:
+
+1. Download `results.zip` from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16003438.svg)](https://doi.org/10.5281/zenodo.16003438)
+
+2. Place .mat files inside `./results/parameter_sweep`
+
+3. Inside the script choose implant material, field strength, slice to be analyzed, and specific distance from the boundary of implant to be analyzed, and run.
+
+4. If `save_results` flag is set to true, results of the analysis will be saved in `./results/analysis` directory.
+
 ## Directory Structure
 
 ```
@@ -165,14 +188,16 @@ mri_metal_simulation/
 ├── simulation/
 │   ├── sequences/               	# MRI sequence simulation functions
 │   ├── reconstruction/          	# Image reconstruction functions
-│   ├── helpers/          		# Helper functions for simulation
-│   └── utils/          		# General utility functions
-├── data/              			# Implant phantom data
-├── results/              		# Simulation results save folder
-│   └── parameter_sweep/          	# Parameter sweep simulation results save folder
+│   ├── helpers/                    # Helper functions for simulation
+│   └── utils/                      # General utility functions
+├── analysis/                       # Data analysis scripts
+├── data/                           # Implant phantom data
+├── results/                        # Simulation results save folder
+│   ├── parameter_sweep/          	# Parameter sweep simulation results save folder
+│   └── analysis/                   # Data analysis results
 ├── main_simulation.m            	# Main simulation script
 ├── main_parameter_sweep.m       	# Main parameter sweep script
-└── run_parameter_sweep.m       	# Helper for parameter sweep script
+└── run_parameter_sweep.m           # Helper for parameter sweep script
 ```
 
 ## References and Acknowledgements
